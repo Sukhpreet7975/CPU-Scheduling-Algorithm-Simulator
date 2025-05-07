@@ -12,7 +12,6 @@ A web-based, interactive simulator designed to visualize and compare common CPU 
     *   [Selecting an Algorithm](#selecting-an-algorithm)
     *   [Simulation Controls](#simulation-controls)
     *   [Understanding the Output](#understanding-the-output)
-*   [Screenshots](#screenshots) (Optional)
 *   [Contributing](#contributing)
 *   [Future Enhancements](#future-enhancements)
 *   [Feedback and Issues](#feedback-and-issues)
