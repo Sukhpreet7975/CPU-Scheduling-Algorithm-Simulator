@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Scheduling Simulator - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-page"> <!-- Add class to body for specific targeting -->
+
+    <header class="home-header">
+        <div class="header-content">
+            <h1>CPU Scheduling Algorithm Simulator</h1>
+            <p class="tagline">Visualize and Compare Common CPU Scheduling Techniques</p>
+             <!-- Dark Mode Toggle Button -->
+            <button id="themeToggleButton" class="theme-toggle-button">Toggle Theme</button>
+        </div>
+    </header>
+
+    <main class="home-main-content">
+        <!-- Rest of the home page content (sections) -->
+         <section id="objective" class="home-section card">
+            <h2>Objective</h2>
+            <p>
+                This web application provides a hands-on tool for visualizing and understanding various non-preemptive and preemptive CPU scheduling algorithms. Users can input process details (arrival time, CPU/IO burst sequence, priority) and observe how different algorithms manage these processes in real-time, including context switch overhead. The simulator calculates key performance metrics (Waiting Time, Turnaround Time, Response Time, Throughput), displays results, generates a dynamic Gantt chart, shows simulated system resource usage, and provides a step-by-step trace of scheduler decisions.
+            </p>
+             <p>
+                 The primary goal is to serve as an educational resource for students learning operating systems concepts, allowing them to experiment with different inputs and compare the behaviour and efficiency of algorithms like FCFS, SJF, SRTF, Priority (NP/P), and Round Robin, incorporating factors like I/O waits and context switches.
+             </p>
+            <div class="cta-section">
+                <a href="simulator.html" class="simulator-link-button">Launch Simulator</a>
+            </div>
+        </section>
+
+        <section id="technologies" class="home-section card">
+            <h2>Technologies Used</h2>
+            <ul>
+                <li><strong>HTML5:</strong> Structures the content of the web pages.</li>
+                <li><strong>CSS3:</strong> Styles the application for a clean interface, layout (Flexbox), real-time visualization, and Gantt chart rendering.</li>
+                <li><strong>JavaScript (Vanilla):</strong> Implements all client-side logic:
+                    <ul>
+                        <li>Dynamic input field generation.</li>
+                        <li>Input validation (including burst sequence parsing).</li>
+                        <li>Real-time simulation engine (`setInterval`).</li>
+                        <li>Scheduling algorithm logic (FCFS, SJF, SRTF, Priority NP/P, RR).</li>
+                         <li>Handling of I/O bursts and blocked state.</li>
+                         <li>Simulation of context switch overhead.</li>
+                        <li>Performance metric calculations (Wait, TAT, Response, Throughput).</li>
+                        <li>DOM manipulation for results, Gantt chart, system monitor, and trace updates.</li>
+                        <li>Event handling for controls, inputs, save/load, presets.</li>
+                        <li>Basic state saving/loading with `localStorage`.</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+         <section id="current-features" class="home-section card">
+             <h2>Current Features</h2>
+             <ul>
+                 <li>Input process details (Arrival Time, CPU/IO Burst Sequence, Priority).</li>
+                 <li>Input for Context Switch Time.</li>
+                 <li>Select from various scheduling algorithms:
+                     <ul>
+                         <li>First-Come, First-Served (FCFS)</li>
+                         <li>Shortest Job First (SJF) (Non-Preemptive - based on next CPU burst)</li>
+                         <li>Shortest Remaining Time First (SRTF) (Preemptive SJF - based on remaining CPU burst)</li>
+                         <li>Priority (Non-Preemptive)</li>
+                         <li>Priority (Preemptive)</li>
+                         <li>Round Robin (RR)</li>
+                     </ul>
+                 </li>
+                 <li>Real-time simulation visualization with Play/Pause/Reset/Speed controls.</li>
+                 <li>Dynamic Gantt chart generation including 'Idle' and 'CS' (Context Switch) periods.</li>
+                 <li>Live updates of the results table (Status, Wait, TAT, Response, Completion) as processes progress/finish.</li>
+                 <li>Calculation and display of average metrics upon completion.</li>
+                 <li>Simulated System Monitor showing CPU and Memory utilization.</li>
+                 <li>Step-by-step execution trace panel.</li>
+                 <li>Save and Load process configurations to/from browser storage.</li>
+                 <li>Preset process examples.</li>
+                 <li>Light/Dark theme toggle.</li>
+             </ul>
+         </section>
+
+
+        <section id="future-enhancements" class="home-section card">
+            <h2>Future Enhancements</h2>
+            <p>Potential improvements and features for future development:</p>
+            <ul>
+                 <li>**Variable Memory Allocation:** Implement checking/waiting for memory.</li>
+                 <li>**Multi-Level Queues (MLQ/MLFQ):** Add support for multiple queue structures.</li>
+                 <li>**Multiple I/O Devices:** Simulate different I/O device queues and speeds.</li>
+                 <li>**Advanced Gantt Chart:** Zooming, panning, better visual state representation.</li>
+                 <li>**Detailed Queue Visualization:** Animated movement of processes between states/queues.</li>
+                 <li>**Aging Implementation:** Add aging to priority or MLFQ algorithms.</li>
+                 <li>**Improved Error Handling:** More robust parsing and user feedback.</li>
+                 <li>**Full Accessibility Audit:** Comprehensive a11y improvements.</li>
+                 <li>**Performance Optimization:** Especially for Gantt rendering with very long traces.</li>
+                 <li>**Code Modularization:** Refactor large JS file into modules.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="home-footer">
+        <p>© 2025 Sukhpreet Singh / CPU Scheduling Algorithm Simulator. A learning project.</p>
+    </footer>
+
+    <!-- Include Theme Script -->
+    <script src="theme.js"></script>
+</body>
+</html>

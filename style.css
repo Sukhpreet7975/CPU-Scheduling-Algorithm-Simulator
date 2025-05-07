@@ -1,0 +1,620 @@
+/* style.css */
+
+/* --- Global Resets & Base Styles --- */
+* {
+    box-sizing: border-box; /* Consistent box model */
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Light Mode Variables --- */
+:root {
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --card-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+    --header-bg: #2c3e50; /* For nav */
+    --header-text: #ecf0f1;
+    --accent-color: #3498db;
+    --accent-hover: #2980b9;
+    --border-color: #ddd;
+    --subtle-bg: #f9f9f9; /* e.g., even table rows */
+    --heading-color: #2c3e50;
+    --secondary-text: #555;
+    --button-default-bg: #bdc3c7;
+    --button-default-hover: #95a5a6;
+    --button-default-text: #333;
+    --status-error-bg: #f2dede;
+    --status-error-text: #a94442;
+    --status-error-border: #ebccd1;
+    --status-success-bg: #dff0d8;
+    --status-success-text: #3c763d;
+    --status-success-border: #d6e9c6;
+    --input-bg: #fff;
+    --input-border: #ccc;
+    --progress-bg: #e9ecef;
+    --progress-bar-cpu: #3498db;
+    --progress-bar-memory: #2ecc71;
+    --status-ready-bg: #eafaf1;
+    --status-ready-text: #28a745;
+    --status-running-bg: #fff3cd;
+    --status-running-text: #ffc107;
+    --status-waiting-bg: #f8d7da;
+    --status-waiting-text: #dc3545;
+    --status-completed-bg: #e2e3e5;
+    --status-completed-text: #6c757d;
+
+}
+
+/* --- Dark Mode Variables --- */
+body.dark-mode {
+    --bg-color: #1e1e1e;
+    --text-color: #e0e0e0;
+    --card-bg: #2a2a2a;
+    --card-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+    --header-bg: #1f2d38; /* Slightly different dark nav */
+    --header-text: #d0d0d0;
+    --accent-color: #5fa8e3; /* Lighter blue for dark bg */
+    --accent-hover: #7fc0f0;
+    --border-color: #444;
+    --subtle-bg: #333333; /* Darker even rows */
+    --heading-color: #e0e0e0; /* Headings same as text */
+    --secondary-text: #aaa;
+    --button-default-bg: #4a4a4a;
+    --button-default-hover: #5a5a5a;
+    --button-default-text: #e0e0e0;
+    --status-error-bg: #5a2d2d;
+    --status-error-text: #f2aaaa;
+    --status-error-border: #7a3d3d;
+    --status-success-bg: #2d5a2d;
+    --status-success-text: #aaf2aa;
+    --status-success-border: #3d7a3d;
+    --input-bg: #333;
+    --input-border: #555;
+    --progress-bg: #444;
+    --progress-bar-cpu: #5fa8e3;
+    --progress-bar-memory: #58d68d;
+    --status-ready-bg: #2d4a3a;
+    --status-ready-text: #73e6a3;
+    --status-running-bg: #5a502d;
+    --status-running-text: #f0d88c;
+    --status-waiting-bg: #5a2d33;
+    --status-waiting-text: #f2aaaa;
+    --status-completed-bg: #494a4b;
+    --status-completed-text: #adb5bd;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.6;
+    background-color: var(--bg-color); /* Use variable */
+    color: var(--text-color);        /* Use variable */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+    min-height: 100vh;
+}
+
+/* --- Navigation Bar Styles (For simulator.html) --- */
+.main-nav {
+    background-color: var(--header-bg);
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space items */
+    align-items: center; /* Vertically center */
+}
+
+.nav-link {
+    color: var(--header-text);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent-color);
+}
+
+/* --- Theme Toggle Button --- */
+.theme-toggle-button {
+    padding: 6px 12px;
+    border: 1px solid var(--header-text);
+    background-color: transparent;
+    color: var(--header-text);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.theme-toggle-button:hover {
+    background-color: var(--header-text);
+    color: var(--header-bg); /* Invert colors on hover */
+}
+
+/* Specific positioning for toggle on home page header */
+.home-header .theme-toggle-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border-color: #fff; /* Override for contrast */
+    color: #fff;
+}
+.home-header .theme-toggle-button:hover {
+     background-color: #fff;
+    color: var(--header-bg);
+}
+
+/* --- General Heading Styles --- */
+h1, h2, h3 {
+    color: var(--heading-color);
+    margin-bottom: 0.6em;
+    line-height: 1.3;
+}
+h1 { font-size: clamp(1.8em, 4vw, 2.2em); text-align: center; } /* Responsive H1 */
+h2 { font-size: 1.6em; margin-top: 1em; }
+h3 { font-size: 1.3em; }
+
+p { margin-bottom: 1em; }
+ul { margin-bottom: 1em; padding-left: 25px; }
+ul ul { margin-top: 0.5em; margin-bottom: 0.5em; }
+li { margin-bottom: 0.5em; }
+
+a { color: var(--accent-color); text-decoration: none; }
+a:hover { text-decoration: underline; color: var(--accent-hover); }
+
+
+/* --- Card Style (Used on both pages) --- */
+.card {
+    background-color: var(--card-bg);
+    color: var(--text-color); /* Inherit body text unless overridden */
+    padding: 20px 25px; /* Slightly reduced padding */
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 20px; /* Reduced margin */
+    transition: background-color 0.3s ease;
+}
+
+/* ======================================== */
+/* --- Styles Specific to Home Page (index.html) --- */
+/* ======================================== */
+
+.home-header {
+    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+    color: #ffffff; /* Keep header text white */
+    padding: 60px 20px 40px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* Needed for absolute positioning of button */
+}
+body.dark-mode .home-header {
+     background: linear-gradient(135deg, #2c3e50 0%, #1f2d38 100%);
+}
+
+.home-header h1 { color: #ffffff; margin-bottom: 0.3em; font-weight: 600; }
+.tagline { font-size: 1.2em; color: #ecf0f1; opacity: 0.9; font-weight: 300; margin-bottom: 0;}
+.home-main-content { max-width: 900px; margin: 0 auto 40px auto; padding: 0 20px; }
+.home-section h2 {
+    border-bottom: 2px solid var(--border-color); /* Use variable */
+    padding-bottom: 8px;
+    margin-bottom: 1.2em;
+    color: var(--heading-color); /* Use variable */
+    transition: border-color 0.3s ease;
+}
+.cta-section { text-align: center; margin-top: 2em; margin-bottom: 0.5em; }
+
+.simulator-link-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--accent-color);
+    color: white; /* Keep text white */
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.simulator-link-button:hover {
+    background-color: var(--accent-hover);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+.home-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid var(--border-color); /* Use variable */
+    font-size: 0.9em;
+    color: var(--secondary-text); /* Use variable */
+     transition: border-color 0.3s ease;
+}
+.home-footer p { margin-bottom: 0;}
+
+/* ======================================== */
+/* --- Styles Specific to Simulator Page (simulator.html) --- */
+/* ======================================== */
+
+/* NEW: Layout using Flexbox or Grid for columns */
+.simulator-layout {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 20px; /* Space between columns */
+    padding: 0 20px 20px 20px; /* Padding around the container */
+}
+
+.input-controls-column {
+    flex: 1; /* Take up available space */
+    min-width: 320px; /* Minimum width before wrapping */
+    display: flex;
+    flex-direction: column;
+}
+
+.output-column {
+    flex: 2; /* Take up more space */
+    min-width: 450px; /* Minimum width before wrapping */
+    display: flex;
+    flex-direction: column;
+}
+/* Ensure cards within columns take full width */
+.input-controls-column .card,
+.output-column .card {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* Adjust H1 margin */
+body:not(.home-page) > h1 { margin-top: 20px; margin-bottom: 20px; }
+
+
+.input-section { /* Styles for the process input card */ }
+.output-section { /* Styles for the results card */ }
+
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
+
+/* Inputs/Selects in form groups */
+.form-group input[type="number"],
+.form-group select {
+    width: 100%; /* Make inputs fill container */
+    padding: 9px 10px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+/* Adjust width for number of processes input and button */
+#num-processes { width: calc(65% - 10px); margin-right: 10px; display: inline-block; vertical-align: middle; }
+#generate-inputs { width: 35%; padding: 9px 10px; display: inline-block; vertical-align: middle;}
+
+/* Focus style for dark mode */
+body.dark-mode .form-group input[type="number"]:focus,
+body.dark-mode .form-group select:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+
+/* General Button - Default subtle style */
+button {
+    padding: 10px 15px;
+    background-color: var(--button-default-bg);
+    color: var(--button-default-text);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 0.95em;
+}
+button:hover {
+    background-color: var(--button-default-hover);
+}
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Process Input Styles */
+#process-inputs-container {
+    max-height: 300px; /* Limit height and allow scroll */
+    overflow-y: auto;
+    margin-top: 10px;
+    padding-right: 5px; /* Space for scrollbar */
+}
+#process-inputs-container .process-entry {
+    margin-bottom: 12px;
+    padding: 12px;
+    border: 1px solid var(--border-color); /* Use variable */
+    border-radius: 4px;
+    background-color: var(--subtle-bg); /* Use subtle bg */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.process-entry-row { display: flex; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+#process-inputs-container .process-entry .process-entry-row:last-child { margin-bottom: 0; }
+
+.process-entry-row .process-id {
+    font-weight: bold;
+    margin-right: 8px;
+    flex-basis: 30px; /* Fixed width for PID */
+    flex-shrink: 0;
+    text-align: right;
+}
+.process-entry-row label {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-right: 5px;
+    font-weight: normal;
+    flex-shrink: 0;
+    width: auto;
+}
+.process-entry-row input[type="number"].process-input {
+    width: 65px; /* Slightly wider */
+    padding: 6px 8px;
+    margin-right: 10px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    flex-grow: 1; /* Allow input to grow slightly */
+    min-width: 50px; /* Ensure minimum size */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.process-entry-row input.burst-input,
+.process-entry-row input.priority-input { margin-right: 0; }
+
+/* Input error styling */
+input.input-error { border-color: #e74c3c !important; background-color: #fceae8 !important; }
+body.dark-mode input.input-error { border-color: #e74c3c !important; background-color: #5a2d2d !important;}
+
+
+/* --- Controls Section --- */
+.controls-section h2 { margin-bottom: 15px; }
+.control-buttons {
+    display: flex;
+    gap: 15px; /* Space between buttons */
+    margin-bottom: 15px;
+}
+.control-button {
+    flex-grow: 1; /* Buttons share space */
+    padding: 12px 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+.control-button.play { background-color: #2ecc71; }
+.control-button.play:hover { background-color: #27ae60; }
+.control-button.pause { background-color: #f39c12; }
+.control-button.pause:hover { background-color: #e67e22; }
+.control-button.reset { background-color: #e74c3c; }
+.control-button.reset:hover { background-color: #c0392b; }
+
+.speed-control { display: flex; align-items: center; gap: 10px; }
+.speed-control label { margin-bottom: 0; }
+#speed-slider { flex-grow: 1; cursor: pointer; }
+#speed-value { font-size: 0.9em; color: var(--secondary-text); min-width: 80px; text-align: right;}
+
+/* --- System Monitor Section --- */
+.system-monitor h2 { margin-bottom: 15px; }
+.monitor-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 10px;
+    font-size: 0.95em;
+}
+.monitor-item span:first-child {
+    width: 120px; /* Align labels */
+    flex-shrink: 0;
+}
+.progress-bar-container {
+    flex-grow: 1;
+    height: 18px;
+    background-color: var(--progress-bg);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+.progress-bar {
+    height: 100%;
+    width: 0%; /* Start at 0 */
+    background-color: var(--progress-bar-cpu);
+    border-radius: 4px;
+    transition: width 0.3s ease-out, background-color 0.3s ease; /* Smooth transition */
+    text-align: center;
+    color: white;
+    font-size: 0.8em;
+    line-height: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.progress-bar.memory {
+     background-color: var(--progress-bar-memory);
+}
+.monitor-item span:last-child:not(.monitor-value) { /* Percentage value */
+    min-width: 40px; /* Space for percentage */
+    text-align: right;
+    font-weight: bold;
+    color: var(--secondary-text);
+}
+.monitor-value { /* For Time and Queue */
+     font-weight: bold;
+     color: var(--accent-color);
+     word-break: break-word; /* Prevent long queue from overflowing */
+}
+.queue-display { align-items: flex-start;} /* Align label top for long queue */
+.queue-display span:first-child { margin-top: 2px;}
+
+
+/* Table Styles */
+.table-container { overflow-x: auto; margin-top: 15px; }
+table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+th, td {
+    border: 1px solid var(--border-color); /* Use variable */
+    padding: 8px 10px; /* Adjusted padding */
+    text-align: center;
+    font-size: 0.9em; /* Slightly smaller font */
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+th {
+    background-color: var(--subtle-bg); /* Use subtle bg */
+    color: var(--heading-color); /* Use heading color */
+    font-weight: 600;
+}
+tbody tr:nth-child(even) { background-color: var(--subtle-bg); }
+body.dark-mode tbody tr:nth-child(odd) { background-color: var(--card-bg); }
+
+/* NEW: Status cell styling */
+td.status-cell span {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+td.status-cell .status-ready { background-color: var(--status-ready-bg); color: var(--status-ready-text); }
+td.status-cell .status-running { background-color: var(--status-running-bg); color: var(--status-running-text); }
+td.status-cell .status-waiting { background-color: var(--status-waiting-bg); color: var(--status-waiting-text); }
+td.status-cell .status-completed { background-color: var(--status-completed-bg); color: var(--status-completed-text); }
+
+
+/* Averages Output */
+#averages-output { margin-top: 10px; }
+#averages-output p { margin: 5px 0; font-size: 1.1em; }
+#averages-output span { font-weight: bold; color: var(--accent-color); } /* Use accent */
+
+
+/* Gantt Chart Styling */
+#gantt-chart-container {
+    margin-top: 20px;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    border: 1px solid var(--border-color);
+    border-bottom: none; /* Remove bottom border as timeline sits below */
+    background-color: var(--subtle-bg); /* Background for the container */
+    min-height: 46px; /* Ensure it doesn't collapse */
+}
+.gantt-chart {
+    display: flex;
+    height: 40px;
+    position: relative;
+    min-width: 100%; /* Ensure it fills container */
+    width: fit-content; /* Allow it to grow */
+}
+.gantt-segment {
+    height: 100%;
+    border-right: 1px solid rgba(255, 255, 255, 0.5); /* White separator */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: white; /* Keep text white on colored segments */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+    padding: 0 5px; /* Add padding inside segments */
+    min-width: 15px; /* Ensure even small segments are visible */
+    transition: background-color 0.3s ease;
+}
+/* Idle Segment Styling */
+.gantt-segment[data-pid="Idle"] { background-color: #5f6a73; color: #ccc; } /* Darker Idle */
+body.dark-mode .gantt-segment[data-pid="Idle"] { background-color: #4a4a4a; color: #bbb;}
+/* Highlight running process? (Optional) */
+/* .gantt-segment.running { border: 2px solid yellow; } */
+
+
+/* Timeline */
+.gantt-timeline {
+    display: flex; /* Use flex for positioning relative to chart */
+    position: relative;
+    height: 25px; /* Reduced height */
+    border: 1px solid var(--border-color);
+    border-top: none; /* Match container border */
+    box-sizing: border-box;
+    min-width: 100%; /* Fill container */
+    width: fit-content; /* Allow growth */
+    margin-top: 0; /* Remove margin */
+    background-color: var(--card-bg); /* Match card background */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.timeline-marker {
+    position: absolute;
+    bottom: 0;
+    transform: translateX(-50%); /* Center the marker */
+    font-size: 0.75em; /* Smaller font */
+    color: var(--secondary-text); /* Use secondary text */
+    white-space: nowrap;
+    line-height: 1; /* Adjust line height */
+}
+.timeline-marker::before {
+    content: '';
+    position: absolute;
+    bottom: 12px; /* Position tick mark relative to text */
+    left: 50%;
+    width: 1px;
+    height: 5px;
+    background-color: var(--secondary-text); /* Use secondary text */
+    transition: background-color 0.3s ease;
+}
+
+/* Status Message */
+.status {
+    margin-top: 15px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 4px;
+    display: none; /* Hide by default */
+    border: 1px solid transparent;
+    transition: all 0.3s ease; /* Animate appearance */
+    font-size: 0.95em;
+}
+.status.error {
+    color: var(--status-error-text);
+    background-color: var(--status-error-bg);
+    border-color: var(--status-error-border);
+    display: block;
+}
+.status.success {
+    color: var(--status-success-text);
+    background-color: var(--status-success-bg);
+    border-color: var(--status-success-border);
+    display: block;
+}
+.status.info { /* NEW: Info style */
+    color: var(--text-color);
+    background-color: var(--subtle-bg);
+    border-color: var(--border-color);
+    display: block;
+}
+
+
+/* Responsive Adjustments (Example) */
+@media (max-width: 768px) {
+    .simulator-layout {
+        flex-direction: column; /* Stack columns */
+    }
+    .input-controls-column, .output-column {
+        min-width: 100%; /* Allow full width */
+    }
+    h1 { font-size: 1.6em; }
+    .control-buttons { flex-direction: column; gap: 10px; }
+    .process-entry-row { gap: 5px; } /* Reduce gap */
+    .process-entry-row input[type="number"].process-input { width: 55px; }
+}

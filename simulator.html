@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Scheduling Simulator (Client-Side)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> <!-- No specific class needed here unless you want simulator-specific base styles -->
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link">← Back to Home</a>
+        <!-- Dark Mode Toggle Button -->
+        <button id="themeToggleButton" class="theme-toggle-button nav-theme-toggle">Toggle Theme</button>
+    </nav>
+
+    <h1>CPU Scheduling Simulator (Real-Time)</h1>
+
+    <div class="container simulator-layout"> <!-- Added class for layout -->
+
+        <!-- Input & Controls Column -->
+        <div class="input-controls-column">
+            <!-- Input Section -->
+            <div class="input-section card">
+                <h2>Process Input</h2>
+                <div class="form-group">
+                    <label for="num-processes">Number of Processes:</label>
+                    <input type="number" id="num-processes" min="1" value="4">
+                    <button id="generate-inputs">Generate Fields</button>
+                </div>
+
+                <div id="process-inputs-container">
+                    <!-- Process input fields will be generated here -->
+                </div>
+
+                <h2>Algorithm Selection</h2>
+                <div class="form-group">
+                    <label for="algorithm">Algorithm:</label>
+                    <select id="algorithm">
+                        <option value="fcfs">First-Come, First-Served (FCFS)</option>
+                        <option value="sjf">Shortest Job First (SJF) (Non-Preemptive)</option>
+                        <option value="srtf">SRTF (Preemptive SJF)</option>
+                        <option value="priority_np">Priority (Non-Preemptive)</option>
+                        <option value="priority_p">Priority (Preemptive)</option>
+                        <option value="rr">Round Robin (RR)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="quantum-group" style="display: none;">
+                    <label for="quantum">Time Quantum (for RR):</label>
+                    <input type="number" id="quantum" min="1" value="2">
+                </div>
+
+                <div id="status-message" class="status"></div>
+            </div>
+
+            <!-- Simulation Controls Section -->
+             <div class="controls-section card">
+                 <h2>Simulation Controls</h2>
+                 <div class="control-buttons">
+                     <button id="play-pause-button" class="control-button play">▶️ Play</button>
+                     <button id="reset-button" class="control-button reset">⏹️ Reset</button>
+                 </div>
+                 <div class="speed-control">
+                     <label for="speed-slider">Speed:</label>
+                     <input type="range" id="speed-slider" min="50" max="1000" value="500" step="50">
+                     <span id="speed-value">500 ms/step</span>
+                 </div>
+             </div>
+
+             <!-- System Monitor Section -->
+             <div class="system-monitor card">
+                 <h2>System Monitor</h2>
+                 <div class="monitor-item">
+                     <span>CPU Utilization:</span>
+                     <div class="progress-bar-container">
+                         <div id="cpu-utilization-bar" class="progress-bar"></div>
+                     </div>
+                     <span id="cpu-utilization-value">0%</span>
+                 </div>
+                 <div class="monitor-item">
+                     <span>Memory Usage:</span>
+                      <div class="progress-bar-container">
+                         <div id="memory-utilization-bar" class="progress-bar memory"></div>
+                     </div>
+                     <span id="memory-utilization-value">0% (0/2048 MB)</span>
+                 </div>
+                 <div class="monitor-item">
+                     <span>Current Time:</span>
+                     <span id="current-time-value" class="monitor-value">0</span>
+                 </div>
+                 <div class="monitor-item queue-display">
+                     <span>Ready Queue:</span>
+                     <span id="ready-queue-value" class="monitor-value">[Empty]</span>
+                 </div>
+             </div>
+        </div>
+
+
+        <!-- Output Column -->
+        <div class="output-column">
+            <!-- Output Section -->
+            <div class="output-section card">
+                 <h2>Results</h2>
+                <div id="results-output">
+                    <p>Generate processes, select an algorithm, and press Play.</p>
+                </div>
+
+                 <h3>Process Details</h3>
+                <div class="table-container">
+                     <table id="results-table">
+                        <thead>
+                            <tr>
+                                <th>PID</th>
+                                <th>Arrival</th>
+                                <th>Burst</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Wait</th>
+                                <th>TAT</th>
+                                <th>Comp</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-tbody">
+                            <!-- Results rows will be added here -->
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <h3>Averages</h3>
+                <div id="averages-output">
+                    <p>Avg Waiting Time: <span id="avg-wait-time">N/A</span></p>
+                    <p>Avg Turnaround Time: <span id="avg-tat-time">N/A</span></p>
+                </div>
+
+                <h3>Gantt Chart</h3>
+                <div id="gantt-chart-container">
+                    <div id="gantt-chart" class="gantt-chart">
+                        <!-- Gantt chart segments will be added here dynamically -->
+                    </div>
+                     <div id="gantt-timeline" class="gantt-timeline">
+                         <!-- Timeline markers will be added here dynamically -->
+                     </div>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- End container -->
+
+    <!-- Include Theme Script FIRST -->
+    <script src="theme.js"></script>
+    <!-- Then include the main simulator script -->
+    <script src="script.js"></script>
+</body>
+</html>
