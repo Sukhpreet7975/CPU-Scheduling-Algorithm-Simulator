@@ -2,8 +2,6 @@
 
 A web-based, interactive simulator designed to visualize and compare common CPU scheduling algorithms. This tool helps users understand the behavior and performance implications of techniques like FCFS, SJF, SRTF, Priority (Non-Preemptive & Preemptive), and Round Robin. It's built entirely with client-side HTML, CSS, and Vanilla JavaScript.
 
-**Live Demo:** 🚀 [Link to your live GitHub Pages demo if you have one - e.g., https://sukhpreet7975.github.io/CPU-Scheduling-Algorithm-Simulator/]
-
 ## 📋 Table of Contents
 
 *   [✨ Features](#sparkles-features)
